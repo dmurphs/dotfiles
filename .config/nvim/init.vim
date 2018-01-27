@@ -12,17 +12,37 @@ if dein#load_state('~/.config/nvim/dein')
   endif
 
   call dein#add('scrooloose/nerdtree')
+  call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('kien/ctrlp.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('mhinz/vim-grepper')
   call dein#add('neomake/neomake')
+
+  " Haskell
   call dein#add('parsonsmatt/intero-neovim')
   call dein#add('neovimhaskell/haskell-vim')
   call dein#add('dracula/vim')
 
+  " Python
+  call dein#add('vim-scripts/indentpython.vim')
+  call dein#add('nvie/vim-flake8')
+  call dein#add('powerline/powerline')
+  call dein#add('davidhalter/jedi')
+  call dein#add('neovim/python-client')
+  call dein#add('zchee/deoplete-jedi')
+
   call dein#end()
   call dein#save_state()
 endif
+
+" Enable deoplete
+call deoplete#enable()
+let g:deoplete#enable_at_startup = 1
+
+" Noeomake setup
+call neomake#configure#automake('rw', 1000)
+let g:neomake_open_list = 2
+let g:neomake_python_enabled_makers = ['python']
 
 " execute pathogen#infect()
 syntax on
@@ -39,6 +59,7 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set laststatus=0
+set clipboard=unnamed
 
 colorscheme dracula
 
@@ -47,10 +68,6 @@ let g:haskell_indent_if = 2
 let g:haskell_indent_before_where = 2
 let g:haskell_indent_case_alternative = 1
 let g:haskell_indent_let_no_in = 0
-
-"neomake settings
-call neomake#configure#automake('w')
-let g:neomake_open_list = 2
 
 "NERDTREE Settings
 autocmd StdinReadPre * let s:std_in=1
@@ -96,4 +113,25 @@ augroup interoMaps
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 augroup END
+
+" Python settings
+let python_highlight_all=1
+let g:python_host_prog = '/Users/dan/Envs/neovim2/bin/python'
+let g:python3_host_prog = '/Users/dan/Envs/neovim3/bin/python'
+let g:deoplete#sources#jedi#show_docstring = 1
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \| set softtabstop=4
+    \| set shiftwidth=4
+    \| set textwidth=79
+    \| set expandtab
+    \| set autoindent
+    \| set fileformat=unix
+
+" JS Settings
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \| set softtabstop=2
+    \| set shiftwidth=2
 
