@@ -42,7 +42,7 @@ let g:deoplete#enable_at_startup = 1
 " Noeomake setup
 call neomake#configure#automake('rw', 1000)
 let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers = ['python']
+let g:neomake_python_enabled_makers = ['python', 'flake8']
 
 " execute pathogen#infect()
 syntax on
@@ -116,9 +116,9 @@ augroup END
 
 " Python settings
 let python_highlight_all=1
+let g:deoplete#sources#jedi#show_docstring = 1
 let g:python_host_prog = '/Users/dan/Envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/dan/Envs/neovim3/bin/python'
-let g:deoplete#sources#jedi#show_docstring = 1
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
