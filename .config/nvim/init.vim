@@ -11,17 +11,19 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
+  call dein#add('dracula/vim')
+
   call dein#add('scrooloose/nerdtree')
   call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('kien/ctrlp.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('mhinz/vim-grepper')
   call dein#add('neomake/neomake')
+  call dein#add('Townk/vim-autoclose')
 
   " Haskell
   call dein#add('parsonsmatt/intero-neovim')
   call dein#add('neovimhaskell/haskell-vim')
-  call dein#add('dracula/vim')
 
   " Python
   call dein#add('vim-scripts/indentpython.vim')
@@ -117,8 +119,8 @@ augroup END
 " Python settings
 let python_highlight_all=1
 let g:deoplete#sources#jedi#show_docstring = 1
-let g:python_host_prog = '/Users/dan/Envs/neovim2/bin/python'
-let g:python3_host_prog = '/Users/dan/Envs/neovim3/bin/python'
+let g:python_host_prog = '/home/dan/Envs/neovim2/bin/python'
+let g:python3_host_prog = '/home/dan/Envs/neovim3/bin/python'
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -130,7 +132,10 @@ au BufNewFile,BufRead *.py
     \| set fileformat=unix
 
 " JS Settings
-au BufNewFile,BufRead *.js, *.html, *.css
+let g:neomake_javascript_enabled_makers = ['flow']
+let g:neomake_jsx_enabled_makers = ['flow']
+
+au BufNewFile,BufRead *.js
     \ set tabstop=2
     \| set softtabstop=2
     \| set shiftwidth=2
